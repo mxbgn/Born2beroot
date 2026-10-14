@@ -17,16 +17,12 @@ This repository contains Bash scripts to automate system configuration, user man
 Clone the repository:
 ```bash
 git clone https://github.com/mxbgn/Born2beroot.git
-cd born2beroot
+cd Born2beroot
 ```
 
-Run the complete setup with the username to configure:
-```bash
-make USERNAME=<username>
-```
-Replace <username> with the appropriate existing or intended user account, according to the behavior of user-groups.sh.
-
-The setup scripts require administrative privileges and use sudo where needed.
+Run the complete setup to configure with `make` and provide a new username and password interactively. Run `make user` to run only the user creation and it's dependencies.
+a new user's name and password are interactively requested: provide an empty username to skip user creation.
+The setup scripts are idempotent and require administrative privileges.
 
 ## Disclaimer
 

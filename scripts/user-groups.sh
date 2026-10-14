@@ -6,15 +6,15 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-if [[ $# -ne 1 || -z "$1" ]]; then
-    echo "Usage: $0 <username>" >&2
-    exit 1
+TARGET_USER="${1:-}"
+
+if [[ -z "$TARGET_USER" ]]; then
+    read -rp "Enter the username to create: " TARGET_USER
 fi
 
-TARGET_USER="$1"
-
-if ! id "$TARGET_USER" >/dev/null 2>&1; then
-    useradd -m "$TARGET_USER"
+if [[ -n "$TARGET_USER" ]] && ! id "$TARGET_USER" >/dev/null 2>&1; then
+    useradd -m -s /bin/bash "$TARGET_USER"
+    passwd "$TARGET_USER"
 fi
 
 for group in sudo user42; do

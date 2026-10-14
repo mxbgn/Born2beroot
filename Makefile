@@ -1,26 +1,21 @@
 SHELL := /bin/bash
 
-.PHONY: all sudo user-groups password ssh firewall monitoring
+.PHONY: all user test
 
 USERNAME ?=
 
-all: monitoring
+all:
+	@scripts/sudo.sh
+	@scripts/password.sh
+	@scripts/user-groups.sh "$(USERNAME)"
+	@scripts/ssh.sh
+	@scripts/firewall.sh
+	@scripts/monitoring.sh
 
-sudo:
-	scripts/sudo.sh
+user:
+	@scripts/sudo.sh
+	@scripts/password.sh
+	@scripts/user-groups.sh "$(USERNAME)"
 
-user-groups: sudo
-	@test -n "$(USERNAME)" || (echo "Usage: make USERNAME=<username>" >&2; exit 1)
-	scripts/user-groups.sh "$(USERNAME)"
-
-password: user-groups
-	scripts/password.sh
-
-ssh: password
-	scripts/ssh.sh
-
-firewall: ssh
-	scripts/firewall.sh
-
-monitoring: firewall
-	scripts/monitoring.sh
+test:
+	@scripts/test.sh
