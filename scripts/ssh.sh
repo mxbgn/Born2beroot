@@ -7,10 +7,10 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 if ! dpkg -l ssh-server | grep -q '^ii'; then
-    bash dependencies.sh
+    bash scripts/dependencies.sh
 fi
 
-cat >/etc/ssh/sshd_config.d/99-custom.conf <<EOF
+cat >/etc/ssh/sshd_config.d/99-custom.conf <<'EOF'
 Port 4242
 PermitRootLogin no
 EOF

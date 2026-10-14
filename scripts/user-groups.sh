@@ -23,6 +23,3 @@ for group in sudo user42; do
     fi
     usermod -aG "$group" "$TARGET_USER"
 done
-
-echo "User '$TARGET_USER' is configured successfully."
-

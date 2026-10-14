@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 if ! dpkg -l ufw | grep -q '^ii'; then
-    bash dependencies.sh
+    bash scripts/dependencies.sh
 fi
 
 ufw allow 4242/tcp

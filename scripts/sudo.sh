@@ -7,11 +7,11 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 if ! dpkg -l sudo | grep -q '^ii'; then
-    bash dependencies.sh
+    bash scripts/dependencies.sh
 fi
 
-mkdir /var/log/sudo
-cat >/etc/sudoers.d/sudo_config <<EOF
+mkdir -p /var/log/sudo
+cat >/etc/sudoers.d/sudo_config <<'EOF'
 Defaults  passwd_tries=3
 Defaults  badpass_message="Mensaje de error personalizado"
 Defaults  logfile="/var/log/sudo/sudo_config"

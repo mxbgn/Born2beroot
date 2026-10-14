@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 if ! dpkg -l libpam-pwquality | grep -q '^ii'; then
-    bash dependencies.sh
+    bash scripts/dependencies.sh
 fi
 
 sed -i 's/^PASS_MAX_DAYS[[:space:]].*/PASS_MAX_DAYS 90/' /etc/login.defs

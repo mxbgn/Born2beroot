@@ -7,4 +7,4 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 apt-get update
-apt-get intall -y sudo ssh-server ufw libpam-pwquality
+apt-get install -y sudo openssh-server ufw libpam-pwquality

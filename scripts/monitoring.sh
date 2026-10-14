@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-cat >/usr/local/bin <<EOF
+cat >/usr/local/bin/monitoring.sh <<'EOF'
 arch=$(uname -a)
 cpuf=$(grep "physical id" /proc/cpuinfo | wc -l)
 cpuv=$(grep "processor" /proc/cpuinfo | wc -l)
@@ -44,5 +44,5 @@ logger -t monitoring "report"
 EOF
 chmod 755 /usr/local/bin/monitoring.sh
 
-CRON_JOB="*/10 * * * * sh /usr/local/bin/monitoring.sh"
-(crontab -u root -l 2>/dev/null | grep -Fv "$CRON_JOB"; echo "$CRON_JOB") | crontab -u root -
+CRON_JOB="/usr/local/bin/monitoring.sh"
+(crontab -u root -l 2>/dev/null | grep -Fv "$CRON_JOB"; echo "*/10 * * * * sh $CRON_JOB") | crontab -u root -
