@@ -20,9 +20,12 @@ git clone https://github.com/mxbgn/Born2beroot.git
 cd Born2beroot
 ```
 
-Run the complete setup to configure with `make` and provide a new username and password interactively. Run `make user` to run only the user creation and it's dependencies.
-a new user's name and password are interactively requested: provide an empty username to skip user creation.
-The setup scripts are idempotent and require administrative privileges.
+Run the environment setup with `make` or add user setup with `make USER=<username>`.
+Run `make user USER=<username>` to run only the user creation and it's dependencies.
+
+The debian session configuration setup can be tested with `make test` or `make test USER=<username>` to add user setup testing.
+
+The setup and testing scripts are idempotent and require administrative privileges.
 
 ## Disclaimer
 

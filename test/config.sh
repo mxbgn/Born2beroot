@@ -24,9 +24,9 @@ test_user() {
         fi
     done
 
-    max_days=$(chage -M "$TARGET_USER" 2>/dev/null)
-    min_days=$(chage -m "$TARGET_USER" 2>/dev/null)
-    
+    max_days=$(chage -l "$TARGET_USER" | awk -F': ' '/Maximum number of days between password change/ {print $2}')
+    min_days=$(chage -l "$TARGET_USER" | awk -F': ' '/Minimum number of days between password change/ {print $2}')
+
     if [[ "$max_days" -eq 90 ]]; then
         echo "PASS: Maximum password age is 90 days"
     else
@@ -74,7 +74,7 @@ test_ssh() {
         failed=1
     fi
 
-    if sshd -T 2>/dev/null | grep 'port 4242'; then
+    if sshd -T 2>/dev/null | grep -q 'port 4242'; then
         echo "PASS: SSH port 4242 is listening"
     else
         echo "FAIL: SSH port 4242 is not listening"

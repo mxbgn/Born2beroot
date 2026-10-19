@@ -10,5 +10,5 @@ if ! dpkg -l ufw | grep -q '^ii'; then
     bash scripts/dependencies.sh
 fi
 
-ufw allow 4242/tcp
-ufw --force enable
+ufw allow 4242/tcp >/dev/null
+ufw --force enable >/dev/null
