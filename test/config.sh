@@ -114,13 +114,17 @@ test_monitoring() {
     fi
 }
 
-if [[ -n "$TARGET_USER" ]] && ! id "$TARGET_USER" >dev/null 2>&1; then
-    echo "Error: user is not defined." >&2
-    failed=1
-else
-    test_user
+if [[ -n "$TARGET_USER" ]]; then
+    if id "$TARGET_USER" >/dev/null 2>&1; then
+        test_user
+    else
+        echo "Error: user '$TARGET_USER' does not exist." >&2
+        failed=1
+    fi
 fi
+
 test_ssh
 test_firewall
 test_monitoring
+
 exit "$failed"
