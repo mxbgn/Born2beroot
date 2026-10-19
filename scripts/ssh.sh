@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-if ! dpkg -l ssh-server | grep -q '^ii'; then
+if ! dpkg -l openssh-server | grep -q '^ii'; then
     bash scripts/dependencies.sh
 fi
 

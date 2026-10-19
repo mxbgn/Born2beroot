@@ -18,4 +18,4 @@ user:
 	@scripts/user-groups.sh "$(USERNAME)"
 
 test:
-	@scripts/test.sh
+	@test/config.sh "$(USERNAME)"

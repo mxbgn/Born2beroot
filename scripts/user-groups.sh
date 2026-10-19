@@ -7,13 +7,10 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 TARGET_USER="${1:-}"
-
-if [[ -z "$TARGET_USER" ]]; then
-    read -rp "Enter the username to create: " TARGET_USER
-fi
-
-if [[ -n "$TARGET_USER" ]] && ! id "$TARGET_USER" >/dev/null 2>&1; then
-    useradd -m -s /bin/bash "$TARGET_USER"
+if [[ -n "$TARGET_USER" ]]; then
+    if ! id "$TARGET_USER" >/dev/null 2>&1; then
+        useradd -m -s /bin/bash "$TARGET_USER"
+    fi
     passwd "$TARGET_USER"
 fi
 
@@ -21,5 +18,7 @@ for group in sudo user42; do
     if ! getent group "$group" >/dev/null 2>&1; then
         groupadd "$group"
     fi
-    usermod -aG "$group" "$TARGET_USER"
+    if [[ -n "$TARGET_USER" ]]; then
+        usermod -aG "$group" "$TARGET_USER"
+    fi
 done
