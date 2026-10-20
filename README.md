@@ -29,16 +29,11 @@ Create the VM using BIOS firmware in QEMU/KVM with virt-manager, attach the Debi
 At the Debian installer boot menu, select **Install** and edit its boot parameters.
 Depending on the boot menu, press `Tab` (ISOLINUX) or `e` (GRUB) to edit the entry. Append the following parameters to the existing kernel command line:
 ```text
-auto=true url=https://raw.githubusercontent.com/mxbgn/Born2beroot/main/installer/preseed.cfg
+auto=true url=https://raw.githubusercontent.com/mxbgn/Born2beroot/main/preseed.cfg
 ```
 
 Boot the edited entry. The installer will attempt to retrieve the configuration and use its answers during installation.
-
-#### 3. Complete the installation
-
 Follow any remaining interactive prompts. Settings not supplied by the preseed may use installer defaults, be skipped, or require manual input.
-Review the partitioning and encryption configuration carefully before confirming disk changes. Automated partitioning can erase the selected disk.
-Once installation finishes, reboot into the new Debian system.
 
 #### 4. Run the post-installation setup
 
@@ -79,7 +74,7 @@ The setup and testing scripts are designed to be idempotent and require appropri
 
 ## Repository structure
 
-- `installer/` — Debian Installer preseed configuration.
+- `preseed.cfg` — Debian Installer preseed configuration.
 - `scripts/` — Bash scripts for system configuration and user management.
 - `Makefile` — Entry points for setup and testing.
 
