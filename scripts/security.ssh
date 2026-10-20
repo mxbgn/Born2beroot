@@ -6,9 +6,12 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-if ! dpkg -l ufw | grep -q '^ii'; then
+if ! dpkg -s ufw >/dev/null 2>&1 || ! dpkg -s apparmor >/dev/null 2>&1; then
     bash scripts/dependencies.sh
 fi
 
-ufw allow 4242/tcp >/dev/null
+systemctl enable --now apparmor
+
+ufw allow 22/tcp >/dev/null
 ufw --force enable >/dev/null
+

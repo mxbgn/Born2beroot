@@ -10,11 +10,7 @@ if ! dpkg -l openssh-server | grep -q '^ii'; then
     bash scripts/dependencies.sh
 fi
 
-cat >/etc/ssh/sshd_config.d/99-custom.conf <<'EOF'
-Port 4242
-PermitRootLogin no
-EOF
-echo "Port 4242" > /etc/ssh/ssh_config.d/99-custom.conf
+echo "PermitRootLogin no" >/etc/ssh/sshd_config.d/99-custom.conf
 
 if /usr/sbin/sshd -t; then
     systemctl reload ssh

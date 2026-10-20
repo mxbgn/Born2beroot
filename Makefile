@@ -2,14 +2,14 @@ SHELL := /bin/bash
 
 .PHONY: all user test
 
-USERNAME ?=
+USER ?=
 
 all:
 	@scripts/sudo.sh
 	@scripts/password.sh
 	@scripts/user-groups.sh "$(USERNAME)"
 	@scripts/ssh.sh
-	@scripts/firewall.sh
+	@scripts/security.sh
 	@scripts/monitoring.sh
 
 user:

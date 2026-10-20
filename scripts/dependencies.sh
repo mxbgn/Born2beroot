@@ -6,5 +6,5 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-apt-get update
-apt-get install -y sudo openssh-server ufw libpam-pwquality
+apt-get update >/dev/null
+apt-get install -y sudo openssh-server ufw libpam-pwquality apparmor apparmor-utils >/dev/null

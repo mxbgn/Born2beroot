@@ -14,11 +14,9 @@ if [[ -n "$TARGET_USER" ]]; then
     passwd "$TARGET_USER"
 fi
 
-for group in sudo user42; do
-    if ! getent group "$group" >/dev/null 2>&1; then
-        groupadd "$group"
-    fi
-    if [[ -n "$TARGET_USER" ]]; then
-        usermod -aG "$group" "$TARGET_USER"
-    fi
-done
+if ! getent group sudo >/dev/null 2>&1; then
+    groupadd sudo
+fi
+if [[ -n "$TARGET_USER" ]]; then
+    usermod -aG sudo "$TARGET_USER"
+fi

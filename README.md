@@ -35,7 +35,7 @@ auto=true url=https://raw.githubusercontent.com/mxbgn/Born2beroot/main/preseed.c
 Boot the edited entry. The installer will attempt to retrieve the configuration and use its answers during installation.
 Follow any remaining interactive prompts. Settings not supplied by the preseed may use installer defaults, be skipped, or require manual input.
 
-#### 4. Run the post-installation setup
+#### 3. Run the post-installation setup
 
 Long into the debian session as root and clone the repository:
 ```bash
@@ -81,5 +81,4 @@ The setup and testing scripts are designed to be idempotent and require appropri
 ## Disclaimer
 
 This repository is intended for educational purposes as part of the 42 Born2beroot project.
-
-Configuration choices should be reviewed and adapted to the target system before use. In particular, partitioning, disk encryption, account credentials, SSH settings, and firewall rules should be tested in a disposable virtual machine before being applied to a system containing important data.
+Configuration choices should be reviewed and adapted to the target system before being applied to a system containing important data.
