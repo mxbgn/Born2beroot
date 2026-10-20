@@ -74,10 +74,10 @@ test_ssh() {
         failed=1
     fi
 
-    if sshd -T 2>/dev/null | grep -q 'port 4242'; then
-        echo "PASS: SSH port 4242 is listening"
+    if sshd -T 2>/dev/null | grep -q 'port 22'; then
+        echo "PASS: SSH port 22 is listening"
     else
-        echo "FAIL: SSH port 4242 is not listening"
+        echo "FAIL: SSH port 22 is not listening"
         failed=1
     fi
 }
@@ -90,10 +90,10 @@ test_firewall() {
         failed=1
     fi
 
-    if ufw status | grep -qE '4242/tcp[[:space:]]+ALLOW'; then
-        echo "PASS: Port 4242/tcp is allowed"
+    if ufw status | grep -qE '22/tcp[[:space:]]+ALLOW'; then
+        echo "PASS: Port 22/tcp is allowed"
     else
-        echo "FAIL: Port 4242/tcp is not allowed"
+        echo "FAIL: Port 22/tcp is not allowed"
         failed=1
     fi
 }

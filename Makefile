@@ -18,4 +18,5 @@ user:
 	@scripts/user-groups.sh "$(USERNAME)"
 
 test:
+	@test/seed.sh
 	@test/config.sh "$(USERNAME)"
